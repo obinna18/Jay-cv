@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Egenti Joshua C. — Brand Identity Designer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --dark: #111111;
+      --card: #181818;
+      --amber: #f59e0b;
+      --amber-soft: #fbbf24;
+      --cream: #f5f0e8;
+      --muted: #888888;
+      --border: #2a2a2a;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--black);
+      color: var(--cream);
+      line-height: 1.6;
+      font-size: 14px;
+      overflow-x: hidden;
+    }
+
+    /* ── HERO SECTION ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 60px 60px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 30%, rgba(245,158,11,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 20% 80%, rgba(245,158,11,0.06) 0%, transparent 50%),
+        var(--black);
+    }
+
+    .hero-number {
+      position: absolute;
+      top: -40px;
+      right: -20px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(200px, 30vw, 400px);
+      color: rgba(245,158,11,0.04);
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      position: relative;
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.2s forwards;
+    }
+
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 1px;
+      background: var(--amber);
+      margin-right: 12px;
+      vertical-align: middle;
+    }
+
+    .hero-name {
+      position: relative;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 12vw, 160px);
+      line-height: 0.9;
+      letter-spacing: -2px;
+      color: var(--white);
+      margin-bottom: 32px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.35s forwards;
+    }
+
+    .hero-name span {
+      color: var(--amber);
+      display: block;
+    }
+
+    .hero-bottom {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 32px;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.55s forwards;
+    }
+
+    .hero-bio {
+      max-width: 480px;
+      font-size: 0.95rem;
+      color: #aaaaaa;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    .hero-contacts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: right;
+    }
+
+    .hero-contacts a {
+      color: var(--cream);
+      text-decoration: none;
+      font-size: 0.82rem;
+      transition: color 0.2s;
+    }
+
+    .hero-contacts a:hover { color: var(--amber); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1s forwards;
+    }
+
+    .hero-scroll span {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, var(--amber), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stat {
+      padding: 40px 32px;
+      border-right: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .stat:last-child { border-right: none; }
+    .stat:nth-child(1) { animation-delay: 0.1s; }
+    .stat:nth-child(2) { animation-delay: 0.2s; }
+    .stat:nth-child(3) { animation-delay: 0.3s; }
+    .stat:nth-child(4) { animation-delay: 0.4s; }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3rem;
+      color: var(--amber);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .main {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+    }
+
+    .left-col { border-right: 1px solid var(--border); }
+
+    /* ── SECTION ── */
+    .section {
+      padding: 60px;
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .section-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      color: var(--amber);
+      opacity: 0.6;
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.8rem;
+      color: var(--white);
+      font-weight: 400;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── EXPERIENCE CARD ── */
+    .exp-card {
+      position: relative;
+      padding: 32px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      margin-bottom: 20px;
+      transition: border-color 0.3s, transform 0.3s;
+      overflow: hidden;
+    }
+
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--amber);
+      transform: scaleY(0);
+      transform-origin: bottom;
+      transition: transform 0.4s ease;
+    }
+
+    .exp-card:hover {
+      border-color: rgba(245,158,11,0.3);
+      transform: translateX(4px);
+    }
+
+    .exp-card:hover::before { transform: scaleY(1); }
+
+    .exp-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .exp-role {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .exp-date {
+      font-size: 0.72rem;
+      color: var(--amber);
+      background: rgba(245,158,11,0.1);
+      border: 1px solid rgba(245,158,11,0.25);
+      padding: 3px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    .exp-company {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+      font-style: italic;
+    }
+
+    .exp-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .exp-list li {
+      font-size: 0.85rem;
+      color: #bbbbbb;
+      padding-left: 18px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .exp-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--amber);
+      font-size: 0.75rem;
+    }
+
+    /* ── SIDEBAR ── */
+    .side-block {
+      padding: 48px 40px;
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    .side-title {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 28px;
+    }
+
+    .skill-item { margin-bottom: 20px; }
+
+    .skill-top {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .skill-name { font-size: 0.82rem; color: var(--cream); font-weight: 500; }
+
+    .skill-pct {
+      font-size: 0.72rem;
+      color: var(--amber);
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: 1px;
+    }
+
+    .skill-bar {
+      height: 2px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .skill-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--amber), var(--amber-soft));
+      border-radius: 2px;
+      width: 0%;
+      animation: fillBar 1.2s ease 0.8s forwards;
+    }
+
+    .tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .tag {
+      font-size: 0.72rem;
+      color: #aaaaaa;
+      border: 1px solid var(--border);
+      padding: 5px 12px;
+      border-radius: 2px;
+      transition: all 0.2s;
+      font-weight: 500;
+    }
+
+    .tag:hover { border-color: var(--amber); color: var(--amber); }
+
+    .edu-degree {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .edu-school { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+    .portfolio-link {
+      display: block;
+      padding: 20px 24px;
+      border: 1px solid rgba(245,158,11,0.3);
+      background: rgba(245,158,11,0.05);
+      border-radius: 4px;
+      text-decoration: none;
+      transition: all 0.3s;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .portfolio-link:hover {
+      background: rgba(245,158,11,0.12);
+      border-color: var(--amber);
+      transform: translateY(-2px);
+    }
+
+    .portfolio-link-label {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 4px;
+    }
+
+    .portfolio-link-url { font-size: 0.9rem; color: var(--white); font-weight: 500; }
+
+    .avail {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .avail-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      animation: pulse 2s ease infinite;
+      flex-shrink: 0;
+    }
+
+    .avail-text { font-size: 0.78rem; color: #aaaaaa; }
+
+    .footer {
+      padding: 40px 60px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--muted);
+      letter-spacing: 2px;
+    }
+
+    .footer-line { font-size: 0.72rem; color: var(--muted); letter-spacing: 1px; }
+
+    /* Stagger delays */
+    .s1 { animation-delay: 0.1s; }
+    .s2 { animation-delay: 0.2s; }
+    .s3 { animation-delay: 0.3s; }
+    .s4 { animation-delay: 0.4s; }
+    .s5 { animation-delay: 0.5s; }
+    .s6 { animation-delay: 0.6s; }
+    .s7 { animation-delay: 0.7s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fillBar {
+      to { width: var(--target-width); }
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+      50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+    }
+
+    @media (max-width: 768px) {
+      .hero { padding: 40px 28px 52px; min-height: 90vh; }
+      .hero-name { font-size: clamp(60px, 16vw, 100px); }
+      .hero-contacts { text-align: left; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      .stat:nth-child(2) { border-right: none; }
+      .main { grid-template-columns: 1fr; }
+      .left-col { border-right: none; }
+      .section { padding: 40px 28px; }
+      .side-block { padding: 40px 28px; }
+      .footer { padding: 32px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-number">JC</div>
+    <div class="hero-tag">Graphics &amp; Brand Identity Designer</div>
+    <h1 class="hero-name">Egenti<br><span>Joshua C.</span></h1>
+    <div class="hero-bottom">
+      <p class="hero-bio">
+        I craft visual identities that stick — brands that speak before you read a word.
+        3+ years building cohesive design systems for startups, social enterprises, and nonprofits across Nigeria.
+      </p>
+      <div class="hero-contacts">
+        <a href="mailto:joshuapraise74@gmail.com">joshuapraise74@gmail.com</a>
+        <a href="tel:+2348021189635">+234 802 118 9635</a>
+        <a href="https://egentijoshua.vzy.io" target="_blank">egentijoshua.vzy.io ↗</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Brands Shaped</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">Active Clients</div></div>
+    <div class="stat"><div class="stat-num">∞</div><div class="stat-label">Creative Drive</div></div>
+  </div>
+
+  <div class="main">
+    <div class="left-col">
+
+      <div class="section s1">
+        <div class="section-header">
+          <span class="section-num">01</span>
+          <h2 class="section-title">Professional Work</h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-top">
+            <div class="exp-role">Graphic Designer / Brand Support</div>
+            <div class="exp-date">2025 – Present</div>
+          </div>
+          <div class="exp-company">Giddel Consults · Logistics &amp; Cargo Handling, Nigeria</div>
+          <ul class="exp-list">
+            <li>Designed corporate materials — invoices, letterheads, reports, and templates for client communications</li>
+            <li>Ensured visual consistency across all documentation and brand touchpoints</li>
+            <li>Collaborated with operations teams to improve data visualization and brand communication</li>
+          </ul>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-top">
+            <div class="exp-role">Graphic Designer</div>
+            <div class="exp-date">2024 – Present</div>
+          </div>
+          <div class="exp-company">Street Waste Company Limited (SWCL) · Tech-Driven Social Enterprise, Nigeria</div>
+          <ul class="exp-list">
+            <li>Built and maintained a cohesive brand identity system that elevated partner and stakeholder recognition</li>
+            <li>Designed environmental awareness campaigns, educational graphics, and PR visuals for recycling advocacy</li>
+            <li>Created pitch decks that directly improved funding presentations and grant outcomes</li>
+            <li>Produced banners, social media carousels, and print materials for outreach in low-income communities</li>
+          </ul>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-top">
+            <div class="exp-role">Brand Identity Designer</div>
+            <div class="exp-date">Aug – Sep 2025</div>
+          </div>
+          <div class="exp-company">Tech for Progress · Nonprofit &amp; Digital Empowerment, Nigeria (Contract)</div>
+          <ul class="exp-list">
+            <li>Redesigned full brand identity and logo system with scalable applications for web and print</li>
+            <li>Delivered comprehensive brand deck with mockups, placement previews, and usage guidelines</li>
+          </ul>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-top">
+            <div class="exp-role">Graphic Designer</div>
+            <div class="exp-date">2023 – Present</div>
+          </div>
+          <div class="exp-company">Boluscrafts Enterprise · Notebook &amp; Diary Production, Nigeria</div>
+          <ul class="exp-list">
+            <li>Designed product packaging, paper bags, and the Gen-Z Diary Collection covers</li>
+            <li>Created pitch decks, letterheads, and proposals for client presentations and grant applications</li>
+            <li>Maintained consistent visual standards across all marketing and retail packaging materials</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="section s2">
+        <div class="section-header">
+          <span class="section-num">02</span>
+          <h2 class="section-title">Volunteer Work</h2>
+          <div class="section-line"></div>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-top">
+            <div class="exp-role">Graphic Designer (Volunteer)</div>
+            <div class="exp-date">2024</div>
+          </div>
+          <div class="exp-company">HeartFund Foundation · Charity Organization, Nigeria</div>
+          <ul class="exp-list">
+            <li>Designed campaign flyers and digital assets for community fundraising and awareness initiatives</li>
+          </ul>
+        </div>
+
+        <div class="exp-card">
+          <div class="exp-top">
+            <div class="exp-role">Design Volunteer</div>
+            <div class="exp-date">2023 – 2024</div>
+          </div>
+          <div class="exp-company">Deeper Life Campus Fellowship (DLCF FUTO) · Faith-Based Organization, Nigeria</div>
+          <ul class="exp-list">
+            <li>Produced event visuals, posters, and evangelism content for outreach campaigns</li>
+            <li>Maintained visual clarity and brand consistency across all digital and print formats</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="right-col">
+
+      <div class="side-block s3">
+        <div class="side-title">Core Skills</div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Adobe Illustrator</span><span class="skill-pct">Expert</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="--target-width:95%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Adobe Photoshop</span><span class="skill-pct">Expert</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="--target-width:92%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Brand Identity Design</span><span class="skill-pct">Expert</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="--target-width:95%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Figma</span><span class="skill-pct">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="--target-width:85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Pitch Deck Design</span><span class="skill-pct">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="--target-width:88%"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-top"><span class="skill-name">Canva</span><span class="skill-pct">Advanced</span></div>
+          <div class="skill-bar"><div class="skill-fill" style="--target-width:90%"></div></div>
+        </div>
+      </div>
+
+      <div class="side-block s4">
+        <div class="side-title">Specialties</div>
+        <div class="tag-cloud">
+          <span class="tag">Logo Design</span>
+          <span class="tag">Brand Systems</span>
+          <span class="tag">Print Media</span>
+          <span class="tag">Social Graphics</span>
+          <span class="tag">Typography</span>
+          <span class="tag">Pitch Decks</span>
+          <span class="tag">Packaging</span>
+          <span class="tag">Campaign Design</span>
+          <span class="tag">Visual Storytelling</span>
+          <span class="tag">Corporate Identity</span>
+        </div>
+      </div>
+
+      <div class="side-block s5">
+        <div class="side-title">Education</div>
+        <div class="edu-degree">B.Tech, Environmental Technology</div>
+        <div class="edu-school">Federal University of Technology,<br>Owerri (FUTO) · Nigeria</div>
+      </div>
+
+      <div class="side-block s6">
+        <div class="side-title">Portfolio</div>
+        <a href="https://egentijoshua.vzy.io" target="_blank" class="portfolio-link">
+          <div class="portfolio-link-label">View my work</div>
+          <div class="portfolio-link-url">egentijoshua.vzy.io ↗</div>
+        </a>
+        <div class="avail">
+          <div class="avail-dot"></div>
+          <span class="avail-text">Available for new projects</span>
+        </div>
+      </div>
+
+      <div class="side-block s7">
+        <div class="side-title">Languages</div>
+        <div style="color:#aaa;font-size:0.84rem;">English <span style="color:var(--amber)">·</span> Professional Working Proficiency</div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-name">Egenti Joshua C.</div>
+    <div class="footer-line">Graphics &amp; Brand Identity Designer · Nigeria · 2025</div>
+  </footer>
+
+</body>
+</html>
